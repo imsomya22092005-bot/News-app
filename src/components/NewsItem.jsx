@@ -1,12 +1,21 @@
 import { Link } from "react-router-dom";
 
 function NewsItem({ article, index }) {
+
+  const openArticle = () => {
+    sessionStorage.setItem(
+      "selectedArticle",
+      JSON.stringify(article)
+    );
+  };
+
   return (
     <article className="news-card">
 
       <Link
         to={`/news/${index}`}
         state={{ article }}
+        onClick={openArticle}
         className="news-card-image"
       >
         {article.urlToImage ? (
@@ -29,6 +38,7 @@ function NewsItem({ article, index }) {
       <div className="news-card-content">
 
         <div className="card-top">
+
           <span className="article-source">
             {article.source?.name || "NEWS"}
           </span>
@@ -36,6 +46,7 @@ function NewsItem({ article, index }) {
           <span className="card-number">
             {String(index + 1).padStart(2, "0")}
           </span>
+
         </div>
 
 
@@ -43,6 +54,7 @@ function NewsItem({ article, index }) {
           <Link
             to={`/news/${index}`}
             state={{ article }}
+            onClick={openArticle}
           >
             {article.title}
           </Link>
@@ -66,6 +78,7 @@ function NewsItem({ article, index }) {
           <Link
             to={`/news/${index}`}
             state={{ article }}
+            onClick={openArticle}
             className="read-more"
           >
             Read story →

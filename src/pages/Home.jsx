@@ -1,13 +1,16 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 import NewsList from "../components/NewsList";
 import newsApi from "../services/newsApi";
 
 function Home() {
   const [news, setNews] = useState([]);
-  const [search, setSearch] = useState("");
-  const [category, setCategory] = useState("general");
-  const [loading, setLoading] = useState(true);
+const [search, setSearch] = useState("");
+const [searchParams, setSearchParams] = useSearchParams();
+
+const category = searchParams.get("category") || "general";
+const [loading, setLoading] = useState(true);
+const [error, setError] = useState("");
 
   useEffect(() => {
     getNews(category);
@@ -17,20 +20,30 @@ function Home() {
     setLoading(true);
 
     try {
-      const response = await newsApi.get("/top-headlines", {
-        params: {
-          country: "us",
-          category: selectedCategory,
-          pageSize: 10,
-        },
-      });
+  setError("");
 
-      setNews(response.data.articles);
-    } catch (error) {
-      console.error("Error fetching news:", error);
-    } finally {
-      setLoading(false);
-    }
+  const response = await newsApi.get("/top-headlines", {
+    params: {
+      country: "us",
+      category: selectedCategory,
+      pageSize: 10,
+    },
+  });
+
+  setNews(response.data.articles || []);
+
+} catch (error) {
+  console.error("Error fetching news:", error);
+
+  setError(
+    "We couldn't load the latest stories. Please try again."
+  );
+
+  setNews([]);
+
+} finally {
+  setLoading(false);
+}
   };
 
   // Search inside currently selected category
@@ -60,6 +73,35 @@ function Home() {
       </main>
     );
   }
+
+  if (error) {
+  return (
+    <main className="error-screen">
+
+      <span className="eyebrow">
+        SOMETHING WENT WRONG
+      </span>
+
+      <h2>
+        The newsroom is
+        <br />
+        <em>temporarily unavailable.</em>
+      </h2>
+
+      <p>
+        {error}
+      </p>
+
+      <button
+        className="retry-button"
+        onClick={() => getNews(category)}
+      >
+        Try Again ↻
+      </button>
+
+    </main>
+  );
+}
 
   return (
     <main className="home-page">
@@ -135,10 +177,11 @@ function Home() {
                   ? "category-btn active"
                   : "category-btn"
               }
-              onClick={() => {
-                setCategory(item.value);
-                setSearch("");
-              }}
+                             onClick={() => {
+  setSearchParams({ category: item.value });
+  setSearch("");
+}}
+ 
             >
               {item.name}
             </button>

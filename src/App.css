@@ -1285,3 +1285,1393 @@ body {
     text-align: center;
   }
 }
+
+/* =========================================
+   ERROR SCREEN
+========================================= */
+
+.error-screen {
+  min-height: 65vh;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  max-width: 900px;
+  margin: 0 auto;
+
+  padding: 80px 6vw;
+
+  text-align: center;
+}
+
+.error-screen h2 {
+  margin: 20px 0;
+
+  font-size: clamp(42px, 6vw, 72px);
+  line-height: 1;
+  letter-spacing: -2px;
+}
+
+.error-screen h2 em {
+  font-family: Georgia, serif;
+  font-weight: 400;
+}
+
+.error-screen p {
+  max-width: 500px;
+  margin: 0 auto 30px;
+
+  color: var(--muted);
+
+  line-height: 1.7;
+}
+
+.retry-button {
+  align-self: center;
+
+  padding: 14px 24px;
+
+  border: 1px solid var(--accent);
+
+  background: var(--accent);
+  color: #111;
+
+  font-weight: 700;
+  letter-spacing: 1px;
+
+  cursor: pointer;
+
+  transition: 0.3s ease;
+}
+
+.retry-button:hover {
+  transform: translateY(-3px);
+}
+
+/* ================================
+   DATE & TIME BAR
+================================ */
+
+.date-bar {
+  width: 100%;
+  padding: 9px 6%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+
+  font-size: 11px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+
+  opacity: 0.65;
+}
+
+.date-bar span:last-child {
+  font-variant-numeric: tabular-nums;
+}
+
+
+/* ================================
+   MOBILE DATE BAR
+================================ */
+
+@media (max-width: 700px) {
+  .date-bar {
+    padding: 8px 5%;
+    font-size: 9px;
+    letter-spacing: 1px;
+  }
+}
+
+.main-nav a {
+  position: relative;
+}
+
+.main-nav a.active {
+  opacity: 1;
+}
+
+.main-nav a.active::after {
+  content: "";
+
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -10px;
+
+  height: 2px;
+  background: currentColor;
+}
+
+/* =================================
+   MOBILE RESPONSIVE FIX
+================================= */
+
+@media (max-width: 700px) {
+
+  /* Prevent horizontal overflow */
+  html,
+  body {
+    width: 100%;
+    overflow-x: hidden;
+  }
+
+  #root {
+    width: 100%;
+    overflow-x: hidden;
+  }
+
+
+  /* DATE BAR */
+  .date-bar {
+    padding: 8px 16px;
+    font-size: 8px;
+    letter-spacing: 1px;
+  }
+
+
+  /* HEADER */
+  .header-inner {
+    width: 100%;
+    padding: 14px 16px;
+  }
+
+  .brand {
+    width: 100%;
+  }
+
+  .brand-tagline {
+    display: none;
+  }
+
+
+  /* NAVIGATION */
+  .main-nav {
+    display: none;
+  }
+
+
+  /* INTRO */
+  .intro-section {
+    padding: 55px 20px 35px;
+    text-align: center;
+  }
+
+  .intro-section h2 {
+    font-size: clamp(48px, 15vw, 72px);
+    line-height: 0.95;
+  }
+
+  .intro-text {
+    max-width: 320px;
+    margin: 28px auto 0;
+  }
+
+
+  /* SEARCH */
+  .news-search {
+    margin: 15px 16px;
+  }
+
+  .search-box input {
+    font-size: 14px;
+  }
+
+
+  /* CATEGORY */
+  .category-section {
+    padding: 30px 16px;
+  }
+
+  .category-list {
+    display: flex;
+    overflow-x: auto;
+    flex-wrap: nowrap;
+    gap: 8px;
+    padding-bottom: 5px;
+
+    scrollbar-width: none;
+  }
+
+  .category-list::-webkit-scrollbar {
+    display: none;
+  }
+
+  .category-btn {
+    flex-shrink: 0;
+  }
+
+
+  /* FEATURED STORY */
+  .featured-section {
+    margin: 20px 16px 50px;
+  }
+
+  .featured-image img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+
+  /* LATEST SECTION */
+  .latest-section {
+    padding: 0 16px;
+  }
+
+  .section-heading {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 15px;
+  }
+
+
+  /* NEWS CARDS — ONE COLUMN */
+  .latest-section .news-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+
+
+  .news-card {
+    width: 100%;
+  }
+
+  .news-card-image {
+    width: 100%;
+  }
+
+  .news-card-image img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+  }
+
+  .news-card-content {
+    padding: 20px;
+  }
+
+  .news-card h2 {
+    font-size: 30px;
+    line-height: 1.05;
+  }
+
+
+  /* ARTICLE DETAILS */
+  .details-page {
+    padding: 25px 16px;
+  }
+
+  .detail-title {
+    font-size: clamp(40px, 12vw, 64px);
+    line-height: 0.98;
+  }
+
+  .article-body {
+    width: 100%;
+  }
+
+}
+
+/* =========================================
+   RESPONSIVE NAVIGATION + HAMBURGER
+========================================= */
+
+/* HAMBURGER HIDDEN ON DESKTOP */
+.menu-button {
+  display: none;
+
+  width: 44px;
+  height: 44px;
+
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 50%;
+
+  background: transparent;
+
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 5px;
+
+  cursor: pointer;
+
+  flex-shrink: 0;
+}
+
+.menu-button span {
+  display: block;
+
+  width: 18px;
+  height: 2px;
+
+  background: currentColor;
+
+  transition:
+    transform 0.3s ease,
+    opacity 0.3s ease;
+}
+
+
+/* =========================================
+   MOBILE MENU
+========================================= */
+
+.mobile-menu {
+  display: none;
+}
+
+
+/* =========================================
+   TABLET + MOBILE
+========================================= */
+
+@media (max-width: 900px) {
+
+  .header-inner {
+    width: 100%;
+    padding: 16px 5%;
+  }
+
+  /* Hide desktop navigation */
+  .main-nav {
+    display: none !important;
+  }
+
+  /* Show hamburger */
+  .menu-button {
+    display: flex;
+  }
+
+  /* Keep brand and hamburger apart */
+  .header-inner {
+    justify-content: space-between;
+  }
+
+
+  /* MOBILE MENU PANEL */
+
+  .mobile-menu {
+    display: flex;
+
+    flex-direction: column;
+
+    width: 100%;
+
+    max-height: 0;
+    overflow: hidden;
+
+    opacity: 0;
+
+    border-top: 1px solid transparent;
+
+    transition:
+      max-height 0.4s ease,
+      opacity 0.3s ease,
+      border-color 0.3s ease;
+  }
+
+  .mobile-menu.open {
+    max-height: 400px;
+
+    opacity: 1;
+
+    border-top-color: rgba(255, 255, 255, 0.08);
+  }
+
+
+  /* MOBILE MENU LINKS */
+
+  .mobile-menu a {
+    display: flex;
+
+    align-items: center;
+
+    min-height: 58px;
+
+    padding: 0 5%;
+
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+
+    color: var(--text);
+
+    text-decoration: none;
+
+    font-size: 13px;
+
+    font-weight: 600;
+
+    letter-spacing: 1.5px;
+
+    text-transform: uppercase;
+
+    transition:
+      background 0.25s ease,
+      color 0.25s ease,
+      padding-left 0.25s ease;
+  }
+
+  .mobile-menu a:hover {
+    background: rgba(255, 255, 255, 0.04);
+
+    color: var(--accent);
+
+    padding-left: calc(5% + 8px);
+  }
+
+
+  /* ACTIVE MOBILE LINK */
+
+  .mobile-menu a.active {
+    color: var(--accent);
+
+    background: rgba(255, 255, 255, 0.035);
+  }
+
+  .mobile-menu a.active::before {
+    content: "";
+
+    width: 4px;
+    height: 20px;
+
+    margin-right: 12px;
+
+    background: var(--accent);
+  }
+
+
+  /* HAMBURGER → X */
+
+  .menu-button[aria-expanded="true"] span:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+  }
+
+  .menu-button[aria-expanded="true"] span:nth-child(2) {
+    opacity: 0;
+  }
+
+  .menu-button[aria-expanded="true"] span:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+  }
+}
+
+
+/* =========================================
+   SMALL PHONES
+========================================= */
+
+@media (max-width: 480px) {
+
+  .date-bar {
+    padding: 8px 14px;
+
+    font-size: 8px;
+
+    letter-spacing: 0.7px;
+  }
+
+  .header-inner {
+    padding: 13px 14px;
+  }
+
+  .brand-mark {
+    width: 38px;
+    height: 38px;
+  }
+
+  .brand h1 {
+    font-size: 20px;
+    letter-spacing: 2px;
+  }
+
+  .menu-button {
+    width: 40px;
+    height: 40px;
+  }
+
+  .mobile-menu a {
+    min-height: 54px;
+
+    padding-left: 14px;
+    padding-right: 14px;
+  }
+
+  .mobile-menu a:hover {
+    padding-left: 22px;
+  }
+}
+
+
+/* =========================================
+   VERY SMALL PHONES
+========================================= */
+
+@media (max-width: 360px) {
+
+  .date-bar {
+    font-size: 7px;
+
+    letter-spacing: 0.4px;
+  }
+
+  .date-bar span:last-child {
+    white-space: nowrap;
+  }
+
+  .brand h1 {
+    font-size: 18px;
+  }
+
+  .brand-mark {
+    width: 36px;
+    height: 36px;
+  }
+
+  .menu-button {
+    width: 38px;
+    height: 38px;
+  }
+}
+/* =========================================
+   FINAL RESPONSIVE WIDTH FIX
+========================================= */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  margin: 0;
+}
+
+body {
+  overflow-x: hidden;
+}
+
+
+/* MAIN PAGE */
+
+.home-page {
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  overflow-x: hidden;
+}
+
+
+/* HEADER */
+
+.site-header {
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+}
+
+.header-inner {
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+}
+
+
+/* =========================================
+   TABLET + MOBILE
+========================================= */
+
+@media (max-width: 900px) {
+
+  /* HERO */
+
+  .intro-section {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    padding: 70px 20px 45px;
+
+    text-align: center;
+  }
+
+  .intro-section > div {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+  }
+
+  .intro-section h2 {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+
+    margin: 15px auto 0;
+
+    font-size: clamp(46px, 13vw, 80px);
+    line-height: 0.95;
+
+    overflow-wrap: break-word;
+    word-break: normal;
+  }
+
+  .intro-text {
+    width: 100%;
+    max-width: 500px;
+    min-width: 0;
+
+    margin: 30px auto 0;
+
+    font-size: clamp(15px, 2.5vw, 18px);
+
+    overflow-wrap: break-word;
+  }
+
+
+  /* SEARCH */
+
+  .news-search {
+    width: calc(100% - 32px);
+    max-width: none;
+    min-width: 0;
+
+    margin-left: 16px;
+    margin-right: 16px;
+  }
+
+  .search-box {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+  }
+
+  .search-box input {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+  }
+
+
+  /* CATEGORIES */
+
+  .category-section {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+
+    padding-left: 16px;
+    padding-right: 0;
+
+    overflow: hidden;
+  }
+
+  .category-list {
+    width: 100%;
+    max-width: 100%;
+
+    display: flex;
+
+    flex-wrap: nowrap;
+
+    overflow-x: auto;
+    overflow-y: hidden;
+
+    padding-right: 16px;
+
+    scrollbar-width: none;
+  }
+
+  .category-list::-webkit-scrollbar {
+    display: none;
+  }
+
+  .category-btn {
+    flex: 0 0 auto;
+  }
+
+
+  /* FEATURED */
+
+  .featured-section {
+    width: calc(100% - 32px);
+    max-width: none;
+    min-width: 0;
+
+    margin-left: 16px;
+    margin-right: 16px;
+
+    display: flex;
+    flex-direction: column;
+  }
+
+  .featured-image {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+  }
+
+  .featured-image img {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+
+    display: block;
+    object-fit: cover;
+  }
+
+  .featured-content {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+  }
+
+
+  /* LATEST */
+
+  .latest-section {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+
+    padding-left: 16px;
+    padding-right: 16px;
+
+    overflow: hidden;
+  }
+
+  .latest-section .news-grid {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+
+    display: grid;
+
+    grid-template-columns: 1fr;
+
+    gap: 20px;
+  }
+
+
+  /* NEWS CARD */
+
+  .news-card {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+  }
+
+  .news-card-image {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .news-card-image img {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+  }
+
+  .news-card-content {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+  }
+
+  .news-card h2 {
+    overflow-wrap: break-word;
+  }
+
+
+  /* SECTION HEADING */
+
+  .section-heading {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+  }
+
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 600px) {
+
+  .date-bar {
+    width: 100%;
+    padding: 8px 14px;
+
+    display: flex;
+    justify-content: space-between;
+
+    gap: 10px;
+
+    font-size: 8px;
+  }
+
+  .date-bar span {
+    white-space: nowrap;
+  }
+
+
+  .header-inner {
+    padding: 14px 16px;
+  }
+
+
+  /* HERO */
+
+  .intro-section {
+    padding: 65px 16px 40px;
+  }
+
+  .intro-section h2 {
+    font-size: clamp(42px, 14vw, 68px);
+    line-height: 0.92;
+  }
+
+  .intro-text {
+    max-width: 360px;
+
+    font-size: 15px;
+    line-height: 1.6;
+  }
+
+
+  /* SEARCH */
+
+  .news-search {
+    width: calc(100% - 32px);
+
+    margin: 0 16px 35px;
+  }
+
+  .search-box input {
+    padding-left: 50px;
+    padding-right: 45px;
+  }
+
+
+  /* FEATURED */
+
+  .featured-section {
+    width: calc(100% - 32px);
+
+    margin: 20px 16px 45px;
+  }
+
+
+  /* NEWS */
+
+  .latest-section {
+    padding: 0 16px;
+  }
+
+  .latest-section .news-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .news-card h2 {
+    font-size: clamp(28px, 8vw, 38px);
+  }
+
+}
+
+
+/* =========================================
+   VERY SMALL PHONES
+========================================= */
+
+@media (max-width: 380px) {
+
+  .date-bar {
+    font-size: 7px;
+    letter-spacing: 0.5px;
+  }
+
+  .header-inner {
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+
+  .intro-section {
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+
+  .intro-section h2 {
+    font-size: clamp(38px, 13vw, 54px);
+  }
+
+  .intro-text {
+    font-size: 14px;
+  }
+
+  .news-search {
+    width: calc(100% - 24px);
+    margin-left: 12px;
+    margin-right: 12px;
+  }
+
+  .featured-section {
+    width: calc(100% - 24px);
+    margin-left: 12px;
+    margin-right: 12px;
+  }
+
+  .latest-section {
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+
+}
+/* =========================================
+   NEWS DETAILS PAGE
+========================================= */
+
+.details-page {
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+
+  padding: 45px 6% 100px;
+
+  overflow-x: hidden;
+}
+
+.full-article {
+  width: 100%;
+  max-width: 1100px;
+
+  margin: 55px auto 0;
+
+  min-width: 0;
+}
+
+
+/* BACK BUTTON */
+
+.back-button {
+  display: inline-flex;
+  align-items: center;
+
+  color: inherit;
+  text-decoration: none;
+
+  font-size: 12px;
+  font-weight: 600;
+
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+
+  opacity: 0.65;
+
+  transition:
+    opacity 0.25s ease,
+    transform 0.25s ease;
+}
+
+.back-button:hover {
+  opacity: 1;
+  transform: translateX(-5px);
+}
+
+
+/* ARTICLE META */
+
+.detail-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 20px;
+
+  margin-bottom: 25px;
+
+  font-size: 11px;
+
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+}
+
+.detail-source {
+  font-weight: 700;
+}
+
+.detail-date {
+  opacity: 0.55;
+}
+
+
+/* TITLE */
+
+.detail-title {
+  width: 100%;
+  max-width: 1050px;
+
+  margin: 0;
+
+  font-size: clamp(48px, 7vw, 100px);
+
+  line-height: 0.95;
+
+  letter-spacing: -3px;
+
+  overflow-wrap: break-word;
+}
+
+
+/* AUTHOR */
+
+.article-author {
+  margin: 25px 0 40px;
+
+  font-size: 14px;
+
+  opacity: 0.6;
+
+  font-style: italic;
+}
+
+
+/* IMAGE */
+
+.detail-image-wrapper {
+  width: 100%;
+
+  margin: 45px 0 55px;
+
+  overflow: hidden;
+
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.detail-image {
+  display: block;
+
+  width: 100%;
+  max-width: 100%;
+
+  height: auto;
+
+  object-fit: cover;
+
+  transition: transform 0.5s ease;
+}
+
+.detail-image-wrapper:hover .detail-image {
+  transform: scale(1.02);
+}
+
+
+/* NO IMAGE */
+
+.detail-image-placeholder {
+  width: 100%;
+
+  min-height: 350px;
+
+  margin: 45px 0 55px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  background: rgba(255, 255, 255, 0.04);
+
+  font-size: 12px;
+
+  letter-spacing: 2px;
+
+  opacity: 0.5;
+}
+
+
+/* ARTICLE BODY */
+
+.article-body {
+  width: 100%;
+  max-width: 780px;
+
+  margin: 0 auto;
+}
+
+.article-body p {
+  margin: 0 0 28px;
+
+  font-size: 18px;
+
+  line-height: 1.8;
+
+  overflow-wrap: break-word;
+}
+
+.article-body .article-description {
+  font-size: 23px;
+
+  line-height: 1.55;
+
+  font-weight: 500;
+}
+
+
+/* ORIGINAL SOURCE BOX */
+
+.article-source-box {
+  margin-top: 60px;
+
+  padding: 30px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 30px;
+
+  border: 1px solid rgba(255, 255, 255, 0.1);
+
+  background: rgba(255, 255, 255, 0.025);
+}
+
+.article-source-box p {
+  margin: 10px 0 0;
+
+  font-size: 14px;
+
+  line-height: 1.5;
+
+  opacity: 0.6;
+}
+
+.original-story {
+  flex-shrink: 0;
+
+  padding: 13px 20px;
+
+  border: 1px solid currentColor;
+
+  color: inherit;
+
+  text-decoration: none;
+
+  font-size: 11px;
+
+  font-weight: 700;
+
+  letter-spacing: 1px;
+
+  text-transform: uppercase;
+
+  transition:
+    background 0.25s ease,
+    color 0.25s ease;
+}
+
+.original-story:hover {
+  background: currentColor;
+  color: #111;
+}
+
+
+/* ARTICLE NOT FOUND */
+
+.article-not-found {
+  width: 100%;
+  max-width: 700px;
+
+  margin: 120px auto;
+
+  text-align: center;
+}
+
+.article-not-found h1 {
+  margin: 20px 0;
+
+  font-size: clamp(45px, 7vw, 80px);
+
+  line-height: 0.95;
+}
+
+.article-not-found p {
+  max-width: 550px;
+
+  margin: 0 auto 35px;
+
+  line-height: 1.7;
+
+  opacity: 0.6;
+}
+
+
+/* =========================================
+   DETAILS — TABLET
+========================================= */
+
+@media (max-width: 900px) {
+
+  .details-page {
+    padding: 35px 5% 80px;
+  }
+
+  .full-article {
+    margin-top: 45px;
+  }
+
+  .detail-title {
+    font-size: clamp(48px, 9vw, 80px);
+
+    letter-spacing: -2px;
+  }
+
+  .article-body {
+    max-width: 720px;
+  }
+
+}
+
+
+/* =========================================
+   DETAILS — MOBILE
+========================================= */
+
+@media (max-width: 600px) {
+
+  .details-page {
+    padding: 25px 16px 60px;
+  }
+
+  .full-article {
+    margin-top: 35px;
+  }
+
+
+  /* META */
+
+  .detail-meta {
+    flex-direction: column;
+
+    align-items: flex-start;
+
+    gap: 8px;
+
+    margin-bottom: 20px;
+
+    font-size: 9px;
+  }
+
+
+  /* TITLE */
+
+  .detail-title {
+    font-size: clamp(40px, 12vw, 65px);
+
+    line-height: 0.95;
+
+    letter-spacing: -1.5px;
+  }
+
+
+  /* AUTHOR */
+
+  .article-author {
+    margin: 20px 0 30px;
+
+    font-size: 13px;
+  }
+
+
+  /* IMAGE */
+
+  .detail-image-wrapper {
+    margin: 30px 0 40px;
+  }
+
+  .detail-image-placeholder {
+    min-height: 220px;
+
+    margin: 30px 0 40px;
+  }
+
+
+  /* BODY */
+
+  .article-body {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .article-body .article-description {
+    font-size: 19px;
+    line-height: 1.55;
+  }
+
+  .article-body p {
+    font-size: 16px;
+    line-height: 1.75;
+  }
+
+
+  /* SOURCE BOX */
+
+  .article-source-box {
+    flex-direction: column;
+
+    align-items: flex-start;
+
+    gap: 22px;
+
+    margin-top: 45px;
+
+    padding: 22px;
+  }
+
+  .original-story {
+    width: 100%;
+
+    text-align: center;
+  }
+
+}
+
+
+/* =========================================
+   DETAILS — VERY SMALL PHONES
+========================================= */
+
+@media (max-width: 380px) {
+
+  .details-page {
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+
+  .detail-title {
+    font-size: clamp(36px, 12vw, 52px);
+  }
+
+  .article-body p {
+    font-size: 15px;
+  }
+
+  .article-source-box {
+    padding: 18px;
+  }
+
+}
