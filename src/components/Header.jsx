@@ -1,17 +1,32 @@
 import { useEffect, useState } from "react";
-import { Link, useSearchParams } from "react-router-dom";
+import {
+  Link,
+  useLocation,
+  useSearchParams,
+} from "react-router-dom";
 
 function Header() {
+  const location = useLocation();
   const [searchParams] = useSearchParams();
 
   const activeCategory =
     searchParams.get("category") || "general";
 
-  const isLatest = window.location.hash === "#latest";
+  const isLatest =
+    location.hash === "#latest";
 
-  const [currentDate, setCurrentDate] = useState(new Date());
+  const isWorld =
+    location.hash === "#world";
 
-  const [menuOpen, setMenuOpen] = useState(false);
+  const [currentDate, setCurrentDate] =
+    useState(new Date());
+
+  const [menuOpen, setMenuOpen] =
+    useState(false);
+
+  /* =========================
+     LIVE DATE & TIME
+  ========================= */
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -21,19 +36,31 @@ function Header() {
     return () => clearInterval(timer);
   }, []);
 
-  const dateText = currentDate.toLocaleDateString("en-US", {
-    weekday: "long",
-    day: "numeric",
-    month: "long",
-    year: "numeric",
-  });
+  const dateText =
+    currentDate.toLocaleDateString(
+      "en-US",
+      {
+        weekday: "long",
+        day: "numeric",
+        month: "long",
+        year: "numeric",
+      }
+    );
 
-  const timeText = currentDate.toLocaleTimeString("en-IN", {
-    hour: "2-digit",
-    minute: "2-digit",
-    second: "2-digit",
-    hour12: true,
-  });
+  const timeText =
+    currentDate.toLocaleTimeString(
+      "en-IN",
+      {
+        hour: "2-digit",
+        minute: "2-digit",
+        second: "2-digit",
+        hour12: true,
+      }
+    );
+
+  /* =========================
+     CLOSE MOBILE MENU
+  ========================= */
 
   const closeMenu = () => {
     setMenuOpen(false);
@@ -42,37 +69,66 @@ function Header() {
   return (
     <header className="site-header">
 
-      {/* TOP DATE BAR */}
+      {/* =========================
+          DATE BAR
+      ========================= */}
+
       <div className="date-bar">
-        <span>{dateText}</span>
-        <span>{timeText} IST</span>
+
+        <span>
+          {dateText}
+        </span>
+
+        <span>
+          {timeText} IST
+        </span>
+
       </div>
 
 
-      {/* MAIN HEADER */}
+      {/* =========================
+          MAIN HEADER
+      ========================= */}
+
       <div className="header-inner">
 
         {/* BRAND */}
+
         <div className="brand">
-          <span className="brand-mark">N</span>
+
+          <span className="brand-mark">
+            N
+          </span>
 
           <div>
-            <h1>THE DAILY</h1>
+
+            <h1>
+              THE DAILY
+            </h1>
 
             <span className="brand-tagline">
               News, beyond the headline.
             </span>
+
           </div>
+
         </div>
 
 
-        {/* DESKTOP NAVIGATION */}
+        {/* =========================
+            DESKTOP NAVIGATION
+        ========================= */}
+
         <nav className="main-nav">
+
+          {/* HOME */}
 
           <Link
             to="/"
             className={
-              activeCategory === "general" && !isLatest
+              activeCategory === "general" &&
+              !isLatest &&
+              !isWorld
                 ? "active"
                 : ""
             }
@@ -80,16 +136,37 @@ function Header() {
             Home
           </Link>
 
+
+          {/* LATEST */}
+
           <Link
             to="/?category=general#latest"
             className={
-              activeCategory === "general" && isLatest
+              activeCategory === "general" &&
+              isLatest
                 ? "active"
                 : ""
             }
           >
             Latest
           </Link>
+
+
+          {/* WORLD */}
+
+          <Link
+            to="/#world"
+            className={
+              isWorld
+                ? "active"
+                : ""
+            }
+          >
+            World
+          </Link>
+
+
+          {/* TECHNOLOGY */}
 
           <Link
             to="/?category=technology"
@@ -102,6 +179,9 @@ function Header() {
             Technology
           </Link>
 
+
+          {/* BUSINESS */}
+
           <Link
             to="/?category=business"
             className={
@@ -112,6 +192,9 @@ function Header() {
           >
             Business
           </Link>
+
+
+          {/* SCIENCE */}
 
           <Link
             to="/?category=science"
@@ -127,22 +210,32 @@ function Header() {
         </nav>
 
 
-        {/* HAMBURGER BUTTON */}
+        {/* =========================
+            HAMBURGER
+        ========================= */}
+
         <button
           className="menu-button"
-          onClick={() => setMenuOpen(!menuOpen)}
+          onClick={() =>
+            setMenuOpen(!menuOpen)
+          }
           aria-label="Toggle navigation menu"
           aria-expanded={menuOpen}
         >
+
           <span></span>
           <span></span>
           <span></span>
+
         </button>
 
       </div>
 
 
-      {/* MOBILE MENU */}
+      {/* =========================
+          MOBILE MENU
+      ========================= */}
+
       <div
         className={
           menuOpen
@@ -151,10 +244,14 @@ function Header() {
         }
       >
 
+        {/* HOME */}
+
         <Link
           to="/"
           className={
-            activeCategory === "general" && !isLatest
+            activeCategory === "general" &&
+            !isLatest &&
+            !isWorld
               ? "active"
               : ""
           }
@@ -163,10 +260,14 @@ function Header() {
           Home
         </Link>
 
+
+        {/* LATEST */}
+
         <Link
           to="/?category=general#latest"
           className={
-            activeCategory === "general" && isLatest
+            activeCategory === "general" &&
+            isLatest
               ? "active"
               : ""
           }
@@ -174,6 +275,24 @@ function Header() {
         >
           Latest
         </Link>
+
+
+        {/* WORLD */}
+
+        <Link
+          to="/#world"
+          className={
+            isWorld
+              ? "active"
+              : ""
+          }
+          onClick={closeMenu}
+        >
+          World
+        </Link>
+
+
+        {/* TECHNOLOGY */}
 
         <Link
           to="/?category=technology"
@@ -187,6 +306,9 @@ function Header() {
           Technology
         </Link>
 
+
+        {/* BUSINESS */}
+
         <Link
           to="/?category=business"
           className={
@@ -198,6 +320,9 @@ function Header() {
         >
           Business
         </Link>
+
+
+        {/* SCIENCE */}
 
         <Link
           to="/?category=science"

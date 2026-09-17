@@ -3,7 +3,18 @@ import { Link, useLocation } from "react-router-dom";
 function NewsDetails() {
   const location = useLocation();
 
-  const article = location.state?.article;
+  // Article normally comes from React Router state
+  // If page is refreshed, get it from sessionStorage
+  const savedArticle = sessionStorage.getItem(
+    "selectedArticle"
+  );
+
+  const article =
+    location.state?.article ||
+    (savedArticle
+      ? JSON.parse(savedArticle)
+      : null);
+
 
   /* --------------------------------
      ARTICLE NOT FOUND
@@ -48,20 +59,24 @@ function NewsDetails() {
   -------------------------------- */
 
   const publishedDate = article.publishedAt
-    ? new Date(article.publishedAt).toLocaleDateString(
-        "en-US",
-        {
-          weekday: "long",
-          year: "numeric",
-          month: "long",
-          day: "numeric",
-        }
-      )
+    ? new Date(
+        article.publishedAt
+      ).toLocaleDateString("en-US", {
+        weekday: "long",
+        year: "numeric",
+        month: "long",
+        day: "numeric",
+      })
     : "Date unavailable";
 
 
+  /* --------------------------------
+     MAIN ARTICLE
+  -------------------------------- */
+
   return (
     <main className="details-page">
+
 
       {/* BACK BUTTON */}
 
@@ -112,6 +127,7 @@ function NewsDetails() {
         {/* HERO IMAGE */}
 
         {article.urlToImage ? (
+
           <div className="detail-image-wrapper">
 
             <img
@@ -121,14 +137,17 @@ function NewsDetails() {
             />
 
           </div>
+
         ) : (
+
           <div className="detail-image-placeholder">
             NO IMAGE AVAILABLE
           </div>
+
         )}
 
 
-        {/* ARTICLE CONTENT */}
+        {/* ARTICLE BODY */}
 
         <div className="article-body">
 
@@ -137,6 +156,7 @@ function NewsDetails() {
               {article.description}
             </p>
           )}
+
 
           {article.content && (
             <p>
@@ -148,6 +168,7 @@ function NewsDetails() {
           {/* ORIGINAL SOURCE */}
 
           {article.url && (
+
             <div className="article-source-box">
 
               <div>
@@ -163,6 +184,7 @@ function NewsDetails() {
 
               </div>
 
+
               <a
                 href={article.url}
                 target="_blank"
@@ -173,6 +195,7 @@ function NewsDetails() {
               </a>
 
             </div>
+
           )}
 
         </div>
