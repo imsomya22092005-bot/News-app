@@ -1,16 +1,119 @@
-# React + Vite
+# 📰 THE DAILY — News App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+> News, beyond the headline.
 
-Currently, two official plugins are available:
+🔗 **Live Demo:** https://news-app-weld-seven.vercel.app/
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+📂 **GitHub Repository:** https://github.com/imsomya22092005-bot/News-app
 
-## React Compiler
+---
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## 📌 About The Project
 
-## Expanding the ESLint configuration
+THE DAILY is a modern and responsive news application built with React.js.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+The application fetches live news articles from NewsAPI and allows users to explore news by category, search for specific topics, and open individual articles in a detailed view.
+
+The project follows a modern editorial-style design with a dark newsroom interface, warm accent colors, animated elements, responsive layouts, and an image-focused news experience.
+
+---
+
+## ✨ Features
+
+- 📰 Live news fetched from NewsAPI
+- 🔎 Search news by keywords and topics
+- 🗂️ Category-based news filtering
+- 💻 Technology news
+- 💼 Business news
+- 🔬 Science news
+- ⚽ Sports news
+- 🎬 Entertainment news
+- ⭐ Featured news section
+- 🌍 Around the World section
+- 📖 Detailed article view
+- 🖼️ Article images
+- 📝 Article title and summary
+- 📅 Publication date
+- 🏷️ News source information
+- 🕒 Live date and time in the header
+- 🍔 Responsive hamburger navigation
+- 📱 Mobile, tablet and desktop responsive design
+- ⚡ Loading state
+- ❌ Error handling
+- 🔗 Original source link
+- 🔐 Private API key using environment variables
+- ☁️ Vercel deployment
+
+---
+
+## 🛠️ Technologies Used
+
+### Frontend
+
+- React.js
+- JavaScript
+- HTML5
+- CSS3
+
+### Libraries
+
+- Axios
+- React Router DOM
+
+### API
+
+- NewsAPI
+
+### Development Tools
+
+- Vite
+- Node.js
+- npm
+- Visual Studio Code
+
+### Version Control
+
+- Git
+- GitHub
+
+### Deployment
+
+- Vercel
+
+---
+
+## 📁 Project Structure
+
+```text
+news-app/
+│
+├── api/
+│   └── news.js
+│
+├── public/
+│   └── world-map.jpg
+│
+├── src/
+│   │
+│   ├── components/
+│   │   ├── Header.jsx
+│   │   ├── NewsList.jsx
+│   │   ├── NewsItem.jsx
+│   │   └── Footer.jsx
+│   │
+│   ├── pages/
+│   │   ├── Home.jsx
+│   │   └── NewsDetails.jsx
+│   │
+│   ├── services/
+│   │   └── newsApi.js
+│   │
+│   ├── App.jsx
+│   ├── App.css
+│   ├── index.css
+│   └── main.jsx
+│
+├── .env
+├── package.json
+├── package-lock.json
+└── README.md
