@@ -1,31 +1,45 @@
-import { Link, useLocation } from "react-router-dom";
+import {
+  Link,
+  useLocation,
+  useParams,
+} from "react-router-dom";
 
 function NewsDetails() {
   const location = useLocation();
+  const { id } = useParams();
 
-  // Article normally comes from React Router state
-  // If page is refreshed, get it from sessionStorage
+  // Article coming from the clicked card
+  const articleFromState =
+    location.state?.article;
+
+  // Try to get the same article from sessionStorage
   const savedArticle = sessionStorage.getItem(
-    "selectedArticle"
+    `article-${id}`
   );
 
-  const article =
-    location.state?.article ||
-    (savedArticle
+  let savedArticleData = null;
+
+  try {
+    savedArticleData = savedArticle
       ? JSON.parse(savedArticle)
-      : null);
+      : null;
+  } catch (error) {
+    console.error(
+      "Could not read saved article:",
+      error
+    );
+  }
 
+  // Use clicked article first,
+  // otherwise use saved article
+  const article =
+    articleFromState || savedArticleData;
 
-  /* --------------------------------
-     ARTICLE NOT FOUND
-  -------------------------------- */
-
+  // If article doesn't exist
   if (!article) {
     return (
       <main className="details-page">
-
         <div className="article-not-found">
-
           <span className="eyebrow">
             404 — STORY UNAVAILABLE
           </span>
@@ -35,9 +49,9 @@ function NewsDetails() {
           </h1>
 
           <p>
-            This story is no longer available in the
+            This story is not available in the
             current session. Please return to the
-            newsroom and choose another story.
+            newsroom and select another article.
           </p>
 
           <Link
@@ -46,40 +60,27 @@ function NewsDetails() {
           >
             ← Back to stories
           </Link>
-
         </div>
-
       </main>
     );
   }
 
-
-  /* --------------------------------
-     DATE
-  -------------------------------- */
-
-  const publishedDate = article.publishedAt
-    ? new Date(
-        article.publishedAt
-      ).toLocaleDateString("en-US", {
-        weekday: "long",
-        year: "numeric",
-        month: "long",
-        day: "numeric",
-      })
-    : "Date unavailable";
-
-
-  /* --------------------------------
-     MAIN ARTICLE
-  -------------------------------- */
+  // Publication date
+  const publishedDate =
+    article.publishedAt
+      ? new Date(
+          article.publishedAt
+        ).toLocaleDateString("en-US", {
+          weekday: "long",
+          year: "numeric",
+          month: "long",
+          day: "numeric",
+        })
+      : "Date unavailable";
 
   return (
     <main className="details-page">
-
-
       {/* BACK BUTTON */}
-
       <Link
         to="/"
         className="back-button"
@@ -87,68 +88,49 @@ function NewsDetails() {
         ← Back to stories
       </Link>
 
-
-      {/* ARTICLE */}
-
+      {/* FULL ARTICLE */}
       <article className="full-article">
 
-
-        {/* ARTICLE META */}
-
+        {/* SOURCE + DATE */}
         <div className="detail-meta">
-
           <span className="detail-source">
-            {article.source?.name || "THE DAILY"}
+            {article.source?.name ||
+              "THE DAILY"}
           </span>
 
           <span className="detail-date">
             {publishedDate}
           </span>
-
         </div>
 
-
-        {/* HEADLINE */}
-
+        {/* TITLE */}
         <h1 className="detail-title">
           {article.title}
         </h1>
 
-
         {/* AUTHOR */}
-
         {article.author && (
           <p className="article-author">
             By {article.author}
           </p>
         )}
 
-
-        {/* HERO IMAGE */}
-
+        {/* IMAGE */}
         {article.urlToImage ? (
-
           <div className="detail-image-wrapper">
-
             <img
               className="detail-image"
               src={article.urlToImage}
               alt={article.title}
             />
-
           </div>
-
         ) : (
-
           <div className="detail-image-placeholder">
             NO IMAGE AVAILABLE
           </div>
-
         )}
 
-
-        {/* ARTICLE BODY */}
-
+        {/* ARTICLE TEXT */}
         <div className="article-body">
 
           {article.description && (
@@ -157,33 +139,25 @@ function NewsDetails() {
             </p>
           )}
 
-
           {article.content && (
             <p>
               {article.content}
             </p>
           )}
 
-
           {/* ORIGINAL SOURCE */}
-
           {article.url && (
-
             <div className="article-source-box">
-
               <div>
-
                 <span className="eyebrow">
                   ORIGINAL SOURCE
                 </span>
 
                 <p>
-                  Continue reading the complete story
-                  from the original publisher.
+                  Continue reading the complete
+                  story from the original publisher.
                 </p>
-
               </div>
-
 
               <a
                 href={article.url}
@@ -193,15 +167,11 @@ function NewsDetails() {
               >
                 Read original story ↗
               </a>
-
             </div>
-
           )}
 
         </div>
-
       </article>
-
     </main>
   );
 }

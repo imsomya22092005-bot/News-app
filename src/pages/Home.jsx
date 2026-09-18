@@ -19,12 +19,23 @@ function Home() {
      GET CATEGORY NEWS
   ========================= */
 
-  useEffect(() => {
-    getNews(category);
-  }, [category]);
+ useEffect(() => {
+  getNews(category);
 
-  const getNews = async (selectedCategory) => {
+  const refreshTimer = setInterval(() => {
+    getNews(category, true);
+  }, 5 * 60 * 1000);
+
+  return () => clearInterval(refreshTimer);
+}, [category]);
+
+  const getNews = async (
+  selectedCategory,
+  backgroundRefresh = false
+) => {
+  if (!backgroundRefresh) {
     setLoading(true);
+  }
 
     try {
       setError("");
@@ -524,23 +535,17 @@ function Home() {
 
           <section className="featured-section">
 
+
             <Link
-              to="/news/featured"
-              state={{
-                article: displayedNews[0],
-              }}
-              onClick={() => {
-
-                sessionStorage.setItem(
-                  "selectedArticle",
-                  JSON.stringify(
-                    displayedNews[0]
-                  )
-                );
-
-              }}
-              className="featured-image"
-            >
+  to={`/news/${encodeURIComponent(
+    displayedNews[0].url ||
+      displayedNews[0].title
+  )}`}
+  state={{
+    article: displayedNews[0],
+  }}
+  className="featured-image"
+>
 
               {displayedNews[0].urlToImage ? (
 
