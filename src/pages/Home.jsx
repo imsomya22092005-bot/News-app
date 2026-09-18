@@ -40,16 +40,14 @@ function Home() {
     try {
       setError("");
 
-      const response = await newsApi.get(
-        "/top-headlines",
-        {
-          params: {
-            country: "us",
-            category: selectedCategory,
-            pageSize: 10,
-          },
-        }
-      );
+      const response = await newsApi.get("", {
+  params: {
+    endpoint: "top-headlines",
+    country: "us",
+    category: selectedCategory,
+    pageSize: 10,
+  },
+});
 
       setNews(response.data.articles || []);
     } catch (error) {
@@ -82,17 +80,15 @@ function Home() {
       setLoading(true);
       setError("");
 
-      const response = await newsApi.get(
-        "/everything",
-        {
-          params: {
-            q: query,
-            language: "en",
-            sortBy: "publishedAt",
-            pageSize: 10,
-          },
-        }
-      );
+      const response = await newsApi.get("", {
+  params: {
+    endpoint: "everything",
+    q: query,
+    language: "en",
+    sortBy: "publishedAt",
+    pageSize: 10,
+  },
+});
 
       setSearchResults(
         response.data.articles || []
