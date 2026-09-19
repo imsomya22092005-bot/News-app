@@ -746,6 +746,70 @@ function Home() {
 
       </section>
 
+
+{/* =========================
+    ABOUT THE DAILY
+========================= */}
+
+<section className="about-section" id="about">
+
+  <div className="about-heading">
+
+    <span className="eyebrow">
+      ABOUT THE DAILY
+    </span>
+
+    <h2>
+      News that goes
+      <br />
+      <em>beyond the headline.</em>
+    </h2>
+
+  </div>
+
+  <div className="about-content">
+
+    <p className="about-intro">
+      The Daily is a modern news platform designed
+      to bring important stories from around the world
+      into one clear and focused newsroom.
+    </p>
+
+    <div className="about-details">
+
+      <div>
+        <span>01</span>
+        <h3>Curated News</h3>
+        <p>
+          Discover stories across technology,
+          business, science and the world.
+        </p>
+      </div>
+
+      <div>
+        <span>02</span>
+        <h3>Explore Easily</h3>
+        <p>
+          Search headlines and browse news
+          through different categories.
+        </p>
+      </div>
+
+      <div>
+        <span>03</span>
+        <h3>Stay Updated</h3>
+        <p>
+          Get access to the latest headlines
+          through a clean and focused interface.
+        </p>
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
     </main>
   );
 }

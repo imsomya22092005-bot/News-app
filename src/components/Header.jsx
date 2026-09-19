@@ -219,6 +219,26 @@ useEffect(() => {
             Science
           </Link>
 
+
+{/* ABOUT */}
+
+<Link
+  to="/#about"
+  onClick={() => {
+    setTimeout(() => {
+      document
+        .getElementById("about")
+        ?.scrollIntoView({
+          behavior: "smooth",
+          block: "start",
+        });
+    }, 100);
+  }}
+>
+  About
+</Link>
+
+
         </nav>
 
 
@@ -355,6 +375,15 @@ useEffect(() => {
         >
           Science
         </Link>
+
+{/* ABOUT */}
+
+<Link
+  to="/#about"
+  onClick={closeMenu}
+>
+  About
+</Link>
 
       </div>
 
