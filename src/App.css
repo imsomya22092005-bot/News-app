@@ -2617,3 +2617,125 @@ body {
 .world-section {
   width: 100%;
 }
+
+/* =========================================
+   LIGHT / DARK THEME
+========================================= */
+
+body.light-theme {
+  --bg: #f5f1e8;
+  --surface: #ffffff;
+  --surface-light: #eee9df;
+  --text: #171717;
+  --muted: #68645d;
+  --soft: rgba(0, 0, 0, 0.08);
+  --accent: #9a762f;
+  --accent-light: #b08a3e;
+  --danger: #c94343;
+}
+
+/* Theme Toggle */
+
+.theme-toggle {
+  width: 42px;
+  height: 42px;
+  border: 1px solid var(--soft);
+  border-radius: 50%;
+  background: var(--surface);
+  color: var(--text);
+  font-size: 18px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: 0.25s ease;
+}
+
+.theme-toggle:hover {
+  border-color: var(--accent);
+  transform: rotate(10deg);
+}
+
+/* Mobile theme toggle */
+
+@media (max-width: 900px) {
+  .theme-toggle {
+    width: 40px;
+    height: 40px;
+    font-size: 17px;
+    margin-right: 8px;
+  }
+}
+
+/* =========================================
+   LIGHT THEME ELEMENTS
+========================================= */
+
+body.light-theme .site-header,
+body.light-theme .site-footer {
+  background: var(--bg);
+  color: var(--text);
+}
+
+body.light-theme .news-card,
+body.light-theme .featured-section,
+body.light-theme .world-section,
+body.light-theme .category-section {
+  color: var(--text);
+}
+
+body.light-theme .news-card-content,
+body.light-theme .featured-content {
+  color: var(--text);
+}
+
+body.light-theme input,
+body.light-theme .search-input {
+  background: var(--surface);
+  color: var(--text);
+  border-color: var(--soft);
+}
+
+body.light-theme input::placeholder,
+body.light-theme .search-input::placeholder {
+  color: var(--muted);
+}
+
+/* =========================================
+   LIGHT THEME DETAILS
+========================================= */
+
+body.light-theme a {
+  color: var(--text);
+}
+
+body.light-theme .main-nav a:hover,
+body.light-theme .mobile-menu a:hover,
+body.light-theme .read-more:hover {
+  color: var(--accent);
+}
+
+body.light-theme .card-arrow {
+  background: var(--surface);
+  color: var(--text);
+  border-color: var(--soft);
+}
+
+body.light-theme .menu-button span {
+  background: var(--text);
+}
+
+body.light-theme .footer-line {
+  background: var(--soft);
+}
+
+body.light-theme .article-source,
+body.light-theme .eyebrow {
+  color: var(--accent);
+}
+
+body.light-theme .theme-toggle {
+  background: var(--surface);
+  color: var(--text);
+  border-color: var(--soft);
+}

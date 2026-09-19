@@ -24,6 +24,18 @@ function Header() {
   const [menuOpen, setMenuOpen] =
     useState(false);
 
+    const [darkMode, setDarkMode] = useState(
+  localStorage.getItem("theme") !== "light"
+);
+
+useEffect(() => {
+  document.body.classList.toggle("light-theme", !darkMode);
+  localStorage.setItem(
+    "theme",
+    darkMode ? "dark" : "light"
+  );
+}, [darkMode]);
+
   /* =========================
      LIVE DATE & TIME
   ========================= */
@@ -209,6 +221,14 @@ function Header() {
 
         </nav>
 
+
+<button
+  className="theme-toggle"
+  onClick={() => setDarkMode(!darkMode)}
+  aria-label="Toggle theme"
+>
+  {darkMode ? "☀️" : "🌙"}
+</button>
 
         {/* =========================
             HAMBURGER
