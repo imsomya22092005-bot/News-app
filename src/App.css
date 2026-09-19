@@ -2739,3 +2739,74 @@ body.light-theme .theme-toggle {
   color: var(--text);
   border-color: var(--soft);
 }
+
+/* Fix light theme main page */
+
+body.light-theme {
+  background: var(--bg);
+  color: var(--text);
+}
+
+body.light-theme .hero-section,
+body.light-theme .news-search,
+body.light-theme .category-section,
+body.light-theme .featured-section,
+body.light-theme .world-section,
+body.light-theme .latest-section {
+  background: var(--bg);
+}
+
+body.light-theme .brand h1 {
+  color: var(--text);
+}
+
+body.light-theme .brand-tagline {
+  color: var(--muted);
+}
+
+body.light-theme .news-search {
+  background: var(--surface);
+  border-color: var(--soft);
+}
+
+body.light-theme .news-search input {
+  background: var(--surface);
+  color: var(--text);
+}
+
+body.light-theme .news-card {
+  background: var(--surface);
+  border-color: var(--soft);
+}
+
+body.light-theme .featured-content,
+body.light-theme .news-card-content {
+  background: var(--surface);
+}
+
+body.light-theme .site-footer {
+  background: var(--bg);
+  color: var(--text);
+}
+
+body.light-theme .site-footer a {
+  color: var(--text);
+}
+
+body.light-theme .site-footer a:hover {
+  color: var(--accent);
+}
+
+body.light-theme .mobile-menu {
+  background: var(--surface);
+  border-color: var(--soft);
+}
+
+body.light-theme .mobile-menu a {
+  color: var(--text);
+}
+
+body.light-theme .mobile-menu a:hover,
+body.light-theme .mobile-menu a.active {
+  color: var(--accent);
+}
