@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState,useRef } from "react";
 import { Link, useSearchParams } from "react-router-dom";
 import NewsList from "../components/NewsList";
 import newsApi from "../services/newsApi";
@@ -11,6 +11,10 @@ function Home() {
 
   const category =
     searchParams.get("category") || "general";
+
+    const currentSection = window.location.hash;
+
+    const categoryChangeRef = useRef(false);
 
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
@@ -28,6 +32,40 @@ function Home() {
 
   return () => clearInterval(refreshTimer);
 }, [category]);
+
+const firstCategoryRender = useRef(true);
+
+useEffect(() => {
+  if (firstCategoryRender.current) {
+    firstCategoryRender.current = false;
+  } else {
+    categoryChangeRef.current = true;
+  }
+}, [category]);
+
+useEffect(() => {
+  if (
+    !categoryChangeRef.current ||
+    loading ||
+    error
+  ) {
+    return;
+  }
+
+  const timer = setTimeout(() => {
+    document
+      .getElementById("latest")
+      ?.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
+
+    categoryChangeRef.current = false;
+  }, 100);
+
+  return () => clearTimeout(timer);
+}, [category, loading, error]);
+
 
   const getNews = async (
   selectedCategory,
@@ -268,6 +306,75 @@ function Home() {
     },
   ];
 
+    const heroContent = {
+    general: {
+      eyebrow: "TODAY'S EDITION",
+      title: "Stories that",
+      emphasis: "matter.",
+      description:
+        "A curated look at the latest stories shaping technology, business, culture and the world.",
+    },
+
+    technology: {
+      eyebrow: "TECHNOLOGY DESK",
+      title: "Stories Shaping",
+      emphasis: "Technology.",
+      description:
+        "The latest developments, ideas and breakthroughs shaping the future of technology.",
+    },
+
+    business: {
+      eyebrow: "BUSINESS DESK",
+      title: "Stories Shaping",
+      emphasis: "Business.",
+      description:
+        "Key business stories, markets and ideas influencing the world of commerce.",
+    },
+
+    sports: {
+      eyebrow: "SPORTS DESK",
+      title: "Stories that",
+      emphasis: "move.",
+      description:
+        "The latest moments, events and stories from the world of sports.",
+    },
+
+    entertainment: {
+      eyebrow: "CULTURE DESK",
+      title: "Stories worth",
+      emphasis: "watching.",
+      description:
+        "The latest stories from entertainment, culture and the people shaping it.",
+    },
+
+    science: {
+      eyebrow: "SCIENCE DESK",
+      title: "Stories beyond",
+      emphasis: "discovery.",
+      description:
+        "Discoveries, research and ideas changing how we understand the world.",
+    },
+  };
+
+ const currentHero =
+  currentSection === "#world"
+    ? {
+        eyebrow: "GLOBAL DESK",
+        title: "Stories from",
+        emphasis: "the world.",
+        description:
+          "Explore important stories, events and developments from around the world.",
+      }
+    : currentSection === "#latest"
+    ? {
+        eyebrow: "LATEST DESK",
+        title: "Stories that",
+        emphasis: "matter now.",
+        description:
+          "Stay updated with the latest headlines and stories from the newsroom.",
+      }
+    : heroContent[category] || heroContent.general;
+
   /* =========================
      LOADING
   ========================= */
@@ -329,37 +436,25 @@ function Home() {
       <section className="hero-section">
 
         <div className="hero-copy">
+  <span className="eyebrow">
+    {currentHero.eyebrow}
+  </span>
 
-          <span className="eyebrow">
-            TODAY'S EDITION
-          </span>
+  <h2>
+    {currentHero.title}
+    <br />
+    <em>{currentHero.emphasis}</em>
+  </h2>
 
-          <h2>
-            Stories that
-            <br />
-            <em>matter.</em>
-          </h2>
+  <p className="hero-description">
+    {currentHero.description}
+  </p>
 
-          <p className="hero-description">
-            A curated look at the latest stories
-            shaping technology, business, culture
-            and the world.
-          </p>
-
-          <div className="hero-meta">
-
-            <span>
-              GLOBAL NEWSROOM
-            </span>
-
-            <span>
-              EST. 2026
-            </span>
-
-          </div>
-
-        </div>
-
+  <div className="hero-meta">
+    <span>GLOBAL NEWSROOM</span>
+    <span>EST. 2026</span>
+  </div>
+</div>
 
         {/* =========================
             WORLD MAP VISUAL
@@ -368,7 +463,7 @@ function Home() {
         <div className="hero-map">
 
           <img
-            src="/world-map.jpg"
+            src="/world-map.png"
             alt="World map"
           />
 
@@ -756,13 +851,13 @@ function Home() {
   <div className="about-heading">
 
     <span className="eyebrow">
-      ABOUT THE DAILY
+      News that goes
+      <br />
+      beyond the headline.
     </span>
 
     <h2>
-      News that goes
-      <br />
-      <em>beyond the headline.</em>
+       ABOUT THE <span>DAILY</span>
     </h2>
 
   </div>
