@@ -224,6 +224,7 @@ useEffect(() => {
 
 <Link
   to="/#about"
+  className={location.hash === "#about" ? "active" : ""}
   onClick={() => {
     setTimeout(() => {
       document

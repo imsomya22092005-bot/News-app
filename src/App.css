@@ -3253,3 +3253,19 @@ body.light-theme .footer-bottom {
 body.light-theme .footer-line {
   background: var(--soft);
 }
+/* FIX ABOUT NAVIGATION */
+.main-nav a[href="/#about"] {
+  color: #c8c5bd;
+}
+
+.main-nav a[href="/#about"]:hover {
+  color: #d6a354;
+}
+
+.main-nav a[href="/#about"]:visited {
+  color: #c8c5bd;
+}
+
+.main-nav a[href="/#about"]:visited:hover {
+  color: #d6a354;
+}
