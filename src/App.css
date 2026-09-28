@@ -3402,7 +3402,7 @@ body.light-theme .footer-line {
 /* ABOUT THE DAILY - GOLD ACCENT */
 
 .about-section .about-heading h2 {
-  color: #171717 !important;
+  color: var(--text) !important;
   font-size: 100px !important;
   line-height: 0.95 !important;
   text-align: center !important;
@@ -3423,4 +3423,35 @@ body.light-theme .footer-line {
   max-width: 850px !important;
   margin: 0 auto 80px !important;
   text-align: center !important;
+}
+
+.save-story {
+  position: absolute;
+  right: 16px;
+  bottom: 16px;
+  width: 38px;
+  height: 38px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  background: rgba(15, 15, 14, 0.75);
+  color: #ffffff;
+  font-size: 21px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 5;
+  transition: 0.25s ease;
+}
+
+.save-story:hover {
+  background: #d6a354;
+  color: #11110f;
+  border-color: #d6a354;
+  transform: scale(1.08);
+}
+.save-story.saved {
+  background: #d6a354;
+  color: #11110f;
+  border-color: #d6a354;
 }

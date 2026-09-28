@@ -98,6 +98,7 @@ useEffect(() => {
       </div>
 
 
+
       {/* =========================
           MAIN HEADER
       ========================= */}
@@ -219,6 +220,17 @@ useEffect(() => {
             Science
           </Link>
 
+
+<Link
+  to="/saved"
+  className={
+    location.pathname === "/saved"
+      ? "active"
+      : ""
+  }
+>
+  Saved
+</Link>
 
 {/* ABOUT */}
 
@@ -376,6 +388,18 @@ useEffect(() => {
         >
           Science
         </Link>
+
+<Link
+  to="/saved"
+  className={
+    location.pathname === "/saved"
+      ? "active"
+      : ""
+  }
+  onClick={closeMenu}
+>
+  Saved
+</Link>
 
 {/* ABOUT */}
 
