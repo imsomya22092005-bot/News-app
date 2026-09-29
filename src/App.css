@@ -3383,6 +3383,35 @@ body.light-theme .footer-line {
   margin: 0 auto !important;
 }
 
+
+/* FINAL ABOUT CENTER FIX */
+
+#about .about-heading {
+  width: 100% !important;
+  max-width: none !important;
+  margin: 0 auto 70px !important;
+  padding: 0 !important;
+
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+
+  text-align: center !important;
+}
+
+#about .about-heading .eyebrow {
+  width: 100% !important;
+  margin: 0 auto 45px !important;
+  text-align: center !important;
+}
+
+#about .about-heading h2 {
+  width: 100% !important;
+  max-width: none !important;
+  margin: 0 auto !important;
+  text-align: center !important;
+}
+
 /* ABOUT HEADING - FINAL */
 
 .about-section .about-heading h2 {
